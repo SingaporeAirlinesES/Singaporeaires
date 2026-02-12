@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singapore Airlines NDC - Formulario de Solicitud</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sia-navy: #003087;
+            --sia-gold: #D4AF37;
+            --sia-light-blue: #E8F2F7;
+            --sia-dark: #001F3F;
+            --text-primary: #2C3E50;
+            --text-secondary: #5A6C7D;
+            --border-color: #E0E6ED;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #F8FBFD 0%, #E8F2F7 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 48, 135, 0.08);
+            overflow: hidden;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--sia-navy) 0%, var(--sia-dark) 100%);
+            padding: 50px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-placeholder {
+            width: 180px;
+            height: 60px;
+            background: var(--white);
+            border-radius: 8px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--sia-navy);
+            font-size: 14px;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            font-weight: 300;
+            color: var(--white);
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 1.6;
+            max-width: 700px;
+        }
+
+        .form-content {
+            padding: 50px 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            animation: slideIn 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--sia-gold);
+        }
+
+        .section-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--sia-navy) 0%, var(--sia-dark) 100%);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 16px;
+            font-size: 18px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            font-weight: 400;
+            color: var(--sia-navy);
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+        }
+
+        .form-group.half {
+            display: inline-block;
+            width: calc(50% - 10px);
+        }
+
+        .form-group.half:nth-child(odd) {
+            margin-right: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 14px;
+            letter-spacing: 0.3px;
+        }
+
+        .required {
+            color: var(--sia-gold);
+            margin-left: 4px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="url"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="date"]:focus,
+        input[type="url"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--sia-navy);
+            box-shadow: 0 0 0 3px rgba(0, 48, 135, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 12px;
+        }
+
+        .radio-option,
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            cursor: pointer;
+            accent-color: var(--sia-navy);
+        }
+
+        .help-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+        .markets-table {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .market-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+            padding: 20px;
+            background: var(--sia-light-blue);
+            border-radius: 8px;
+            border-left: 4px solid var(--sia-gold);
+        }
+
+        .add-market-btn {
+            background: var(--white);
+            border: 2px dashed var(--sia-navy);
+            color: var(--sia-navy);
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            margin-top: 16px;
+        }
+
+        .add-market-btn:hover {
+            background: var(--sia-light-blue);
+            border-style: solid;
+        }
+
+        .submit-section {
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--sia-navy) 0%, var(--sia-dark) 100%);
+            color: var(--white);
+            border: none;
+            padding: 18px 60px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 48, 135, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .submit-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(0, 48, 135, 0.3);
+        }
+
+        .submit-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-note {
+            margin-top: 30px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 24px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .form-content {
+                padding: 40px 24px;
+            }
+
+            .form-group.half {
+                width: 100%;
+                margin-right: 0;
+            }
+
+            .market-row {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <div class="logo-placeholder">SINGAPORE AIRLINES</div>
+                <h1>NDC via Tech Partner Form</h1>
+                <p class="subtitle">Este formulario es para socios que buscan establecer una conexión NDC con Singapore Airlines a través de un Tech Partner aprobado por SIA. Una vez completado, recibirá una confirmación automática por correo electrónico.</p>
+            </div>
+        </div>
+
+        <div class="form-content">
+            <!-- IMPORTANTE: Reemplaza TU-EMAIL@EJEMPLO.COM con tu email real -->
+            <form id="ndcForm" action="https://formsubmit.co/TU-EMAIL@EJEMPLO.COM" method="POST">
+                <!-- FormSubmit Configuration -->
+                <input type="hidden" name="_subject" value="Nueva Solicitud NDC - Singapore Airlines">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="text" name="_honey" style="display:none">
+                
+                <!-- Section A: Applicant Information -->
+                <div class="section">
+                    <div class="section-header">
+                        <div class="section-number">A</div>
+                        <h2 class="section-title">Información del Solicitante</h2>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="submissionDate">Fecha de presentación<span class="required">*</span></label>
+                        <input type="date" id="submissionDate" name="Fecha de presentación" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="companyName">Nombre de la empresa solicitante<span class="required">*</span></label>
+                        <input type="text" id="companyName" name="Nombre de la empresa" required placeholder="Ingrese el nombre de su empresa">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registeredAddress">Dirección registrada del solicitante<span class="required">*</span></label>
+                        <textarea id="registeredAddress" name="Dirección registrada" required placeholder="Ingrese la dirección completa"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="website">Sitio web del solicitante<span class="required">*</span></label>
+                        <input type="url" id="website" name="Sitio web" required placeholder="https://www.ejemplo.com">
+                    </div>
+
+                    <div class="form-group half">
+                        <label for="pocName">Nombre del punto de contacto general<span class="required">*</span></label>
+                        <input type="text" id="pocName" name="Nombre POC" required placeholder="Nombre completo">
+                    </div>
+
+                    <div class="form-group half">
+                        <label for="pocEmail">Email del punto de contacto general<span class="required">*</span></label>
+                        <input type="email" id="pocEmail" name="Email POC" required placeholder="contacto@empresa.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apiUsage">Explique cómo pretende utilizar la API<span class="required">*</span></label>
+                        <textarea id="apiUsage" name="Uso de la API" required placeholder="Por ejemplo: vender billetes de SIA en su sitio web / aplicación móvil"></textarea>
+                        <div class="help-text">Describa detalladamente el uso previsto de la API</div>
+                    </div>
+                </div>
+
+                <!-- Section B: NDC Connection Information -->
+                <div class="section">
+                    <div class="section-header">
+                        <div class="section-number">B</div>
+                        <h2 class="section-title">Información de Conexión NDC</h2>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="techPartner">Tech Partner elegido<span class="required">*</span></label>
+                        <input type="text" id="techPartner" name="Tech Partner" required placeholder="Nombre del Tech Partner">
+                    </div>
+
+                    <div class="form-group">
+                        <label>¿Ya está conectado con el partner mencionado?<span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="Conectado con partner" value="Sí" required>
+                                <span>Sí</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="Conectado con partner" value="No">
+                                <span>No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Contenido a vender<span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="Contenido a vender" value="Solo billetes aéreos" required>
+                                <span>Solo billetes aéreos</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="Contenido a vender" value="Billetes y servicios auxiliares">
+                                <span>Billetes aéreos y servicios auxiliares</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Proceso de liquidación<span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="Proceso de liquidación" value="Vía BSP" required>
+                                <span>Vía BSP</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="Proceso de liquidación" value="Pago directo a SIA">
+                                <span>Pago directo a SIA (solo FOP CC)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Método(s) de pago<span class="required">*</span></label>
+                        <input type="hidden" name="Métodos de pago" id="paymentMethodsHidden">
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" class="payment-method" value="Tarjeta de crédito">
+                                <span>Tarjeta de crédito</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" class="payment-method" value="Efectivo">
+                                <span>Efectivo</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Para CC FOP, ¿puede mostrar un mensaje de verificación?<span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="Verificación CC" value="Sí" required>
+                                <span>Sí</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="Verificación CC" value="No">
+                                <span>No</span>
+                            </label>
+                        </div>
+                        <div class="help-text">Consulte: <a href="https://www.singaporeair.com/en_UK/bn/faqCategory/?category=29864" target="_blank">mensaje de verificación</a></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Integración con APIs de servicio NDC<span class="required">*</span></label>
+                        <input type="hidden" name="Integración NDC" id="ndcIntegrationHidden">
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" class="ndc-integration" value="Cancelar reservas">
+                                <span>Para cancelar reservas</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" class="ndc-integration" value="Cambiar reservas">
+                                <span>Para cambiar reservas</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" class="ndc-integration" value="Ninguna">
+                                <span>Ninguna</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Retener reservas (pago diferido)<span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="Retener reservas" value="Sí" required>
+                                <span>Sí</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="Retener reservas" value="No">
+                                <span>No</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section C: Markets -->
+                <div class="section">
+                    <div class="section-header">
+                        <div class="section-number">C</div>
+                        <h2 class="section-title">Mercados en los que Opera</h2>
+                    </div>
+
+                    <div id="marketsContainer">
+                        <div class="market-row">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label>Mercado<span class="required">*</span></label>
+                                <input type="text" name="Mercado 1" required placeholder="ej. Singapore">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label>POC local (email)<span class="required">*</span></label>
+                                <input type="email" name="POC Email 1" required placeholder="ej. xxx@abc.com">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label>Código de agente<span class="required">*</span></label>
+                                <input type="text" name="Código Agente 1" required placeholder="ej. 32311111">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="add-market-btn" onclick="addMarketRow()">+ Agregar otro mercado</button>
+                </div>
+
+                <!-- Submit Section -->
+                <div class="submit-section">
+                    <button type="submit" class="submit-btn">
+                        <span>Enviar Formulario</span>
+                    </button>
+                    <p class="footer-note">
+                        Los datos serán enviados automáticamente a Singapore Airlines.<br>
+                        Recibirá una copia de confirmación en su correo electrónico.<br>
+                        <strong>La finalización del formulario no garantiza el acceso al contenido NDC de SIA.</strong>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let marketCount = 1;
+
+        // Add market row functionality
+        function addMarketRow() {
+            marketCount++;
+            const container = document.getElementById('marketsContainer');
+            const newRow = document.createElement('div');
+            newRow.className = 'market-row';
+            newRow.innerHTML = `
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label>Mercado</label>
+                    <input type="text" name="Mercado ${marketCount}" placeholder="ej. Singapore">
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label>POC local (email)</label>
+                    <input type="email" name="POC Email ${marketCount}" placeholder="ej. xxx@abc.com">
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label>Código de agente</label>
+                    <input type="text" name="Código Agente ${marketCount}" placeholder="ej. 32311111">
+                </div>
+            `;
+            container.appendChild(newRow);
+        }
+
+        // Handle checkbox groups
+        document.getElementById('ndcForm').addEventListener('submit', function(e) {
+            // Payment methods
+            const paymentMethods = Array.from(document.querySelectorAll('.payment-method:checked'))
+                .map(cb => cb.value).join(', ');
+            document.getElementById('paymentMethodsHidden').value = paymentMethods || 'Ninguno seleccionado';
+            
+            // NDC Integration
+            const ndcIntegration = Array.from(document.querySelectorAll('.ndc-integration:checked'))
+                .map(cb => cb.value).join(', ');
+            document.getElementById('ndcIntegrationHidden').value = ndcIntegration || 'Ninguno seleccionado';
+        });
+
+        // Set today's date as default
+        document.getElementById('submissionDate').valueAsDate = new Date();
+    </script>
+</body>
+</html>
