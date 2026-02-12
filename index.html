@@ -383,7 +383,7 @@
 
         <div class="form-content">
             <!-- IMPORTANTE: Reemplaza TU-EMAIL@EJEMPLO.COM con tu email real -->
-            <form id="ndcForm" action="https://formspree.io/f/xkovjnyw" method="POST">
+            <form id="ndcForm" action="https://formspree.io/f/tu-nueva-url" method="POST">
                 <!-- FormSubmit Configuration -->
                 <input type="hidden" name="_subject" value="Nueva Solicitud NDC - Singapore Airlines">
                 <input type="hidden" name="_captcha" value="false">
@@ -523,118 +523,4 @@
                         <input type="hidden" name="Integración NDC" id="ndcIntegrationHidden">
                         <div class="checkbox-group">
                             <label class="checkbox-option">
-                                <input type="checkbox" class="ndc-integration" value="Cancelar reservas">
-                                <span>Para cancelar reservas</span>
-                            </label>
-                            <label class="checkbox-option">
-                                <input type="checkbox" class="ndc-integration" value="Cambiar reservas">
-                                <span>Para cambiar reservas</span>
-                            </label>
-                            <label class="checkbox-option">
-                                <input type="checkbox" class="ndc-integration" value="Ninguna">
-                                <span>Ninguna</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Retener reservas (pago diferido)<span class="required">*</span></label>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" name="Retener reservas" value="Sí" required>
-                                <span>Sí</span>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="Retener reservas" value="No">
-                                <span>No</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section C: Markets -->
-                <div class="section">
-                    <div class="section-header">
-                        <div class="section-number">C</div>
-                        <h2 class="section-title">Mercados en los que Opera</h2>
-                    </div>
-
-                    <div id="marketsContainer">
-                        <div class="market-row">
-                            <div class="form-group" style="margin-bottom: 0;">
-                                <label>Mercado<span class="required">*</span></label>
-                                <input type="text" name="Mercado 1" required placeholder="ej. Singapore">
-                            </div>
-                            <div class="form-group" style="margin-bottom: 0;">
-                                <label>POC local (email)<span class="required">*</span></label>
-                                <input type="email" name="POC Email 1" required placeholder="ej. xxx@abc.com">
-                            </div>
-                            <div class="form-group" style="margin-bottom: 0;">
-                                <label>Código de agente<span class="required">*</span></label>
-                                <input type="text" name="Código Agente 1" required placeholder="ej. 32311111">
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="button" class="add-market-btn" onclick="addMarketRow()">+ Agregar otro mercado</button>
-                </div>
-
-                <!-- Submit Section -->
-                <div class="submit-section">
-                    <button type="submit" class="submit-btn">
-                        <span>Enviar Formulario</span>
-                    </button>
-                    <p class="footer-note">
-                        Los datos serán enviados automáticamente a Singapore Airlines.<br>
-                        Recibirá una copia de confirmación en su correo electrónico.<br>
-                        <strong>La finalización del formulario no garantiza el acceso al contenido NDC de SIA.</strong>
-                    </p>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        let marketCount = 1;
-
-        // Add market row functionality
-        function addMarketRow() {
-            marketCount++;
-            const container = document.getElementById('marketsContainer');
-            const newRow = document.createElement('div');
-            newRow.className = 'market-row';
-            newRow.innerHTML = `
-                <div class="form-group" style="margin-bottom: 0;">
-                    <label>Mercado</label>
-                    <input type="text" name="Mercado ${marketCount}" placeholder="ej. Singapore">
-                </div>
-                <div class="form-group" style="margin-bottom: 0;">
-                    <label>POC local (email)</label>
-                    <input type="email" name="POC Email ${marketCount}" placeholder="ej. xxx@abc.com">
-                </div>
-                <div class="form-group" style="margin-bottom: 0;">
-                    <label>Código de agente</label>
-                    <input type="text" name="Código Agente ${marketCount}" placeholder="ej. 32311111">
-                </div>
-            `;
-            container.appendChild(newRow);
-        }
-
-        // Handle checkbox groups
-        document.getElementById('ndcForm').addEventListener('submit', function(e) {
-            // Payment methods
-            const paymentMethods = Array.from(document.querySelectorAll('.payment-method:checked'))
-                .map(cb => cb.value).join(', ');
-            document.getElementById('paymentMethodsHidden').value = paymentMethods || 'Ninguno seleccionado';
-            
-            // NDC Integration
-            const ndcIntegration = Array.from(document.querySelectorAll('.ndc-integration:checked'))
-                .map(cb => cb.value).join(', ');
-            document.getElementById('ndcIntegrationHidden').value = ndcIntegration || 'Ninguno seleccionado';
-        });
-
-        // Set today's date as default
-        document.getElementById('submissionDate').valueAsDate = new Date();
-    </script>
-</body>
-</html>
+                                <input type="checkbox" class="ndc-integration" value
